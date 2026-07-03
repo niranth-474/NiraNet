@@ -27,3 +27,10 @@ class Linear(Module):
         self.X = X
         z = X @ self.W + self.b
         return z
+    
+    def backward(self, dZ):
+        m = self.X.shape[0]
+        self.dW = (self.X.T @ dZ) / m
+        self.db = np.sum(dZ, axis=0, keepdims=True) / m
+        dX = dZ @ self.W.T
+        return dX
