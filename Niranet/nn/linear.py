@@ -34,3 +34,9 @@ class Linear(Module):
         self.db = np.sum(dZ, axis=0, keepdims=True) / m
         dX = dZ @ self.W.T
         return dX
+    
+    def parameters(self):
+        return [
+            {"params": "W", "layer": self},
+            {"params": "b", "layer": self},
+        ]
